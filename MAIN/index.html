@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+
+  <!-- Simple, beginner-friendly CSS -->
+  <style>
+    /* ===== Reset & Base Styles ===== */
+    /* Enable smooth scrolling for in-page anchor links */
+    html {
+      scroll-behavior: smooth;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      background-color: #263333;
+      color: #ffffff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== Navigation ===== */
+    nav {
+      background-color: #3f5353;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      margin: 0 4rem;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    /* ===== Welcome Section with Video Background ===== */
+    /* IMPORTANT: This section breaks free from the max-width: 1000px constraint */
+    .welcome {
+      position: relative;
+      height: 50vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      
+      /* STRETCH FULL WIDTH - override the section max-width rule */
+      width: 100%;           /* Full available width */
+      max-width: none;       /* Remove any max-width limit */
+      margin: 0;             /* Remove auto margins */
+      padding: 0;            /* Remove padding from section */
+    }
+
+    .welcome video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;           /* Fill the .welcome container completely */
+      height: 100%;
+      object-fit: cover;     /* Maintain aspect ratio, fill container */
+      z-index: -2;
+    }
+
+    .welcome::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1000%;
+      background: rgba(63, 83, 83, 0.6); /* overlay for readability */
+      z-index: -1;
+    }
+
+    .welcome-content {
+      background-color: rgba(255, 255, 255, 0.15);
+      padding: 2rem 3rem;
+      border-radius: 12px;
+    }
+
+    .welcome h1 {
+      font-family:'Times New Roman', Times, serif;
+      font-weight: bold;
+      font-size: 5.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .welcome p {
+      font-family:'Times New Roman', Times, serif;
+      font-size: 1.1rem;
+    }
+
+    /* ===== Section Styles ===== */
+    section {
+      padding: 4rem 1.5rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #ffffff;
+      font-family:Arial, Helvetica, sans-serif
+    }
+
+    /* ===== Bio Section ===== */
+    .bio p {
+      color:#ffffff8f;
+      font-size: 1.1rem;
+      font-style: italic;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    /* ===== Skills Section ===== */
+    .skills-list {
+      display: flex;           /* Enable flexbox layout */
+      justify-content: center; /* Center boxes horizontally */
+      gap: 2rem;              /* Add space between boxes */
+      flex-wrap: nowrap;      /* Keep all boxes on ONE line */
+    }
+
+    .skill {
+      background-color: #6c9494;     
+      width: 200px;                   /* Fixed width so all boxes are same size */
+      padding: 1rem 1rem;           /* Space inside the box */
+      border-radius: 12px;            /* Rounded corners */
+
+      display: flex;                  /* Child items use flexbox */
+      flex-direction: column;         /* Stack items vertically (icon on top, text below) */
+      align-items: center;            /* Center items horizontally within the box */
+      gap: 0.75rem;                   /* Space between icon and text */
+
+      text-align: center;             /* Center text alignment */
+      color: #fff;                 /* Dark text color */
+    }
+
+    .skill img {
+      width: 50px;            /* Small icon size */
+      height: 50px;           /* Square icon */
+      object-fit: contain;    /* Keep image proportions, don't stretch */
+    }
+
+    /* Style the skill label text */
+    .skill p {
+      font-weight: bold;      /* Make text bold */
+      margin: 0;              /* Remove default margins */
+      font-style: italic;
+      font-size: 1rem;
+    }
+
+
+
+    /* ===== Projects Section ===== */
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      /* background-color: #6c949448; */
+      padding: 1.5rem;
+      border-radius: 12px;
+      border-style: groove;
+      
+      /* Stack image on top, text below */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* Project card image icon */
+    .project-card img {
+      width: 80px;            /* Icon size */
+      height: 80px;           /* Square box */
+      object-fit: contain;    /* Scale image to fit inside, no cropping */
+      border-radius: 8px;     /* Rounded corners */
+      
+      transition: transform 200ms ease; /* Smooth scale on hover */
+      will-change: transform;
+      cursor: pointer;
+    }
+
+    /* Slightly grow the project icon when hovered or focused */
+      .project-card a {
+        display: inline-block;
+        cursor: pointer;
+      }
+
+      /* Slightly grow the project icon when hovered or focused */
+      .project-card a:hover img,
+      .project-card a:focus img {
+        transform: scale(1.08);
+      }
+
+    .project-card h3 {
+      margin-bottom: 0.3rem;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: #fff;
+      text-align: center;
+    }
+
+    .project-card p {
+      font-size: 0.8rem;
+      width: 85%;
+      color: #ffffff8f;
+      text-align: center;
+    }
+
+    
+
+
+    /* ===== Footer ===== */
+    footer {
+      background-color: #3f5353;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#bio">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+  </nav>
+
+  <!-- Welcome Section -->
+  <section class="welcome">
+    <!-- Replace video.mp4 with your own video or gif -->
+    <video autoplay muted loop>
+      <source src="backgroundTopographic.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+
+    <div class="welcome-content">
+      <h1>Paulo Penaga's Portfolio</h1>
+      <p>Web Developer & Game Designer</p>
+    </div>
+  </section>
+
+  <!-- Bio Section -->
+  <section id="bio" class="bio">
+    <h2>About Me</h2>
+    <p>
+      Hi! I'm a web development student who loves creating clean and
+      user-friendly websites. For web development, I'm learning HTML, CSS, and JavaScript to better understand how to build interactive web pages. <br><br>For game development, I'm proficient in C# with XNA and Unreal Engine to create engaging games. I also have a passion for graphic design, especially in designing clothing and apparel for virtual platforms like ROBLOX.<br><br>So far, the only projects I'm currently working on are mostly in graphic design. Being a passionate designer, I also want to be able to design websites and UI in the future. Thankfully, I'm taking a web development course thanks to Global Career Accelerator in hopes of getting a headstart into my career. <br><br>This portfolio showcases some of my skills and projects, and this site will grow as I build more projects throughout my college course.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-list">
+      <!-- Each skill box contains an icon image and text label -->
+      <div class="skill">
+        <!-- Icon goes on TOP because the .skill has flex-direction: column -->
+        <img src="htmlcss.png" alt="HTML and CSS icon">
+        <!-- Text label goes BELOW the icon -->
+        <p>HTML + CSS</p>
+      </div>
+
+      <div class="skill">
+        <img src="c xna.png" alt="XNA Game Development icon">
+        <p>XNA Game Development (C#)</p>
+      </div>
+
+      <div class="skill">
+        <img src="unreal.png" alt="Unreal Engine icon">
+        <p>Unreal Engine</p>
+      </div>
+
+      <div class="skill">
+        <img src="paint.png" alt="GFX Design icon">
+        <p>GFX/Clothing Design</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Current Projects</h2>
+    <div class="projects">
+      <div class="project-card">
+        <a href="https://www.roblox.com/communities/9312291/ZO-PRODUCTIONS#!/about" target="_blank" rel="noopener noreferrer">
+          <img src="ZO.png" alt="ZO Productions icon">
+        </a>
+        <h3>ZO PRODUCTIONS</h3>
+        <p>My own ROBLOX clothing group that mainly focuses on sports clothing, mainly basketball and football. Despite being a small clothing group, I have been able to connect with several other developers and top content creators.</p>
+      </div>
+
+      <div class="project-card">
+        <a href="https://www.roblox.com/games/80681221431821/Practical-Basketball" target="_blank" rel="noopener noreferrer">
+          <img src="practical logo.png" alt="Practical Basketball icon">
+        </a>
+        <h3>Practical Basketball</h3>
+        <p>Practical Basketball is a ROBLOX basketball game that is currently (1/30/2026) under development. Using my skills in <b><i>GFX/Clothing Design</i></b>, I helped create original designs for the game's basketball courts and jerseys. So far, we have conducted two stress tests, with averages of 33k concurrent users and a peak of 65k players. I see this game as more of a passion project than a commercial product.</p>
+      </div>
+
+      <div class="project-card">
+        <a href="https://www.roblox.com/communities/315387788/Pick-Six-Interactive#!/about" target="_blank" rel="noopener noreferrer">
+          <img src="pick_six_logo.png" alt="Project Three icon">
+        </a>
+        <h3>Pick Six: Interactive</h3>
+        <p>Pick Six: Interactive is a ROBLOX football group that is currently developing a "next-gen" football game. My contribution to the game is designing a football jersey template that is unique from other types of football games in the ROBLOX platform.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Paulo Penaga's Portfolio</p>
+  </footer>
+
+</body>
+</html>
